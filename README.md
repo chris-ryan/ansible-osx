@@ -1,6 +1,7 @@
 # Basic setup of fresh MacOS for dev using ansible & Homebrew
 
 Started with a fresh install of MacOS Sierra 10.12.16
+
 Tested to work with ansible: 2.3.1.0 & Homebrew 1.3.0
 
 # Install dependencies
@@ -18,7 +19,8 @@ Tested to work with ansible: 2.3.1.0 & Homebrew 1.3.0
     
 # Getting/creating the ansible playbook
 
-You can download the ansible playbook from github, edit the files within `roles/common/vars``` to add your preferred packages, then skip to Running the playbook 
+You can [download] the ansible playbook:
+`git clone https://github.com/chris-ryan/ansible-osx.git` and edit the files within `roles/common/vars` to add your preferred packages, then skip to [Running the playbook] 
 or, create it from scratch using the following instructions:
 
 ### Create the playbook folder and inventory
@@ -73,12 +75,12 @@ vim vars/brew_packages.yml
     ---
 	homebrew_taps:
 	 - caskroom/cask
-			
+
 	homebrew_packages:
 	 - { name: node, state: latest, install_options: without-npm }
 	 - { name: wget, state: present }
 	 - { name: dockutil, state: latest }
-			
+
 	homebrew_cask_packages:
       - { name: google-chrome }
       - { name: slack }
@@ -101,7 +103,7 @@ vim vars/brew_packages.yml
 	 - iTunes
 	 - iBooks
 	 - App Store
-			
+
 	dockitems_to_persist:
 	 - name: Google Chrome
 	   path: "/Applications/Google Chrome.app"
@@ -120,10 +122,10 @@ vim vars/brew_packages.yml
 	- name: homebrew add repo
 	  homebrew_tap: tap={{ item }} state=present
 	  with_items: "{{ homebrew_taps }}"
-			
+
 	- name: Update homebrew
 	  homebrew: update_homebrew=yes
-			
+
 	# brew
 	- name: Install homebrew packages.
 	  homebrew: >
@@ -183,7 +185,7 @@ vim vars/brew_packages.yml
 	- name: Load all variable files
 	 include_vars:
 	   dir: '../vars'
-		
+
 	- include: brew.yml
 	- include: dockutils.yml
 	```
@@ -198,7 +200,6 @@ vim vars/brew_packages.yml
 
 ## References
 
-
 * [Medium] - Automation of installation on Mac with ansible
 * [Ansible-docs-homebrew] - Syntax and use of the ansible homebrew module
 * [Ansible-docs-best-practices] - Markdown parser done right. Fast and easy to extend.
@@ -206,15 +207,10 @@ vim vars/brew_packages.yml
 * [Ansible-docs-loops] - evented I/O for the backend
 
 
+   [download]: <https://github.com/chris-ryan/ansible-osx.git>
+   [Running the playbook](#running-the-playbook)
    [Medium]: <https://medium.com/@kojiitp/automation-of-installation-on-mac-w-ansible-21354cce0d7b>
    [Ansible-docs-homebrew]: <http://docs.ansible.com/ansible/latest/homebrew_module.html>
    [Ansible-docs-best-practices]: <http://docs.ansible.com/ansible/latest/playbooks_best_practices.html>
    [Ansible-docs-playbooks]: <http://docs.ansible.com/ansible/latest/playbooks_intro.html>
    [Ansible-docs-loops]: <http://docs.ansible.com/ansible/latest/playbooks_loops.html>
-
-   [PlDb]: <https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md>
-   [PlGh]: <https://github.com/joemccann/dillinger/tree/master/plugins/github/README.md>
-   [PlGd]: <https://github.com/joemccann/dillinger/tree/master/plugins/googledrive/README.md>
-   [PlOd]: <https://github.com/joemccann/dillinger/tree/master/plugins/onedrive/README.md>
-   [PlMe]: <https://github.com/joemccann/dillinger/tree/master/plugins/medium/README.md>
-   [PlGa]: <https://github.com/RahulHP/dillinger/blob/master/plugins/googleanalytics/README.md>
