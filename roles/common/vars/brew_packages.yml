@@ -1,0 +1,17 @@
+---
+homebrew_taps:
+  - caskroom/cask
+
+homebrew_default_state: present
+
+homebrew_packages:
+  - { name: node, state: latest, install_options: without-npm }
+  - { name: wget }
+  - { name: dockutil }
+
+homebrew_cask_packages:
+  - { name: google-chrome }
+  - { name: slack }
+  - { name: the-unarchiver }
+  - { name: visual-studio-code }
+  - { name: vlc }

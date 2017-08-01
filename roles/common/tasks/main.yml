@@ -1,0 +1,6 @@
+- name: Load all variable files
+  include_vars:
+    dir: '../vars'
+
+- include: brew.yml
+- include: dockutils.yml
