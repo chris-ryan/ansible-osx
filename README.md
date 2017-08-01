@@ -19,8 +19,8 @@ Tested to work with ansible: 2.3.1.0 & Homebrew 1.3.0
     
 # Getting/creating the ansible playbook
 
-You can [download] the ansible playbook:
-`git clone https://github.com/chris-ryan/ansible-osx.git` and edit the files within `roles/common/vars` to add your preferred packages, then skip to [Running the playbook] 
+You can [download](https://github.com/chris-ryan/ansible-osx.git) the ansible playbook:
+`git clone https://github.com/chris-ryan/ansible-osx.git` and edit the files within `roles/common/vars` to add your preferred packages, then skip to [Running the playbook](#running-the-playbook) 
 or, create it from scratch using the following instructions:
 
 ### Create the playbook folder and inventory
@@ -32,6 +32,7 @@ The inventory file tells ansible what machines to deploy to. Because this is a l
 ```sh
 vim inventory
 ```
+
 ```yaml
 [local-mac]
 Localhost
@@ -40,9 +41,7 @@ Localhost
 ```sh
 vim localhost.yml
 ```
-
-- 
-
+-
     ```yaml 
     - hosts: localhost
       connection: local
@@ -171,16 +170,8 @@ vim vars/brew_packages.yml
   > Note: Since ansible v2.2, ```with_items``` requires explicit jinja2 wrapping
 
 	• Make the master tasks file
-	
-	  - ```vim tasks/main.yml```
+	- `vim tasks/dockutils.html`
   - 			
-        ---
-	    - name: Remove unwanted items from Dock
-		  shell: dockutil --remove '{{ item }}'
-		  ignore_errors: true
-		
-		- 
-		
 	```yaml
 	- name: Load all variable files
 	 include_vars:
@@ -200,17 +191,8 @@ vim vars/brew_packages.yml
 
 ## References
 
-* [Medium] - Automation of installation on Mac with ansible
-* [Ansible-docs-homebrew] - Syntax and use of the ansible homebrew module
-* [Ansible-docs-best-practices] - Markdown parser done right. Fast and easy to extend.
-* [Ansible-docs-playbooks] - great UI boilerplate for modern web apps
-* [Ansible-docs-loops] - evented I/O for the backend
-
-
-   [download]: <https://github.com/chris-ryan/ansible-osx.git>
-   [Running the playbook](#running-the-playbook)
-   [Medium]: <https://medium.com/@kojiitp/automation-of-installation-on-mac-w-ansible-21354cce0d7b>
-   [Ansible-docs-homebrew]: <http://docs.ansible.com/ansible/latest/homebrew_module.html>
-   [Ansible-docs-best-practices]: <http://docs.ansible.com/ansible/latest/playbooks_best_practices.html>
-   [Ansible-docs-playbooks]: <http://docs.ansible.com/ansible/latest/playbooks_intro.html>
-   [Ansible-docs-loops]: <http://docs.ansible.com/ansible/latest/playbooks_loops.html>
+* [Medium](https://medium.com/@kojiitp/automation-of-installation-on-mac-w-ansible-21354cce0d7b) - Automation of installation on Mac with ansible
+* [Ansible-docs-homebrew](http://docs.ansible.com/ansible/latest/homebrew_module.html) - Syntax and use of the ansible homebrew module
+* [Ansible-docs-best-practices](http://docs.ansible.com/ansible/latest/playbooks_best_practices.html) - Markdown parser done right. Fast and easy to extend.
+* [Ansible-docs-playbooks](http://docs.ansible.com/ansible/latest/playbooks_intro.html) - great UI boilerplate for modern web apps
+* [Ansible-docs-loops](http://docs.ansible.com/ansible/latest/playbooks_loops.html) - evented I/O for the backend
